@@ -1,5 +1,7 @@
 SimpleBlog::Application.routes.draw do
 
+  get "users/new"
+
   resources :articles do
     resources :comments, only: [:create, :destroy]  
   end

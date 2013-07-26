@@ -20,8 +20,9 @@
   </tr>
    <% for item in @items %>
    <tr>
+
  			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["author"].to_s%></span></td> 
- 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["timestamp"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=DateTime.strptime((item["timestamp"]/1000).to_s,'%s').strftime("%Y-%m-%d %H:%M:%S")%></span></td> 
  			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;
  				
  				<%= (item["type"].to_s == "comment") ? "article:reference:" + item["title"].to_s : item["title"].to_s%>
