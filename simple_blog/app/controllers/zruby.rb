@@ -66,4 +66,31 @@ class Zruby < ApplicationController
     
     req.close
   end
+  
+  
+  def subscribe
+    #start
+    ctx = ZMQ::Context.create(1)
+    #STDERR.puts "Failed to create a Context" unless ctx
+    Rails.logger.info "ZMQ:Sub initiating thread"
+    
+    # Connect our subscriber socket
+    sub = ctx.socket(ZMQ::SUB)
+    sub.setsockopt(ZMQ::IDENTITY, "simpleBlog++")
+    sub.setsockopt(ZMQ::SUBSCRIBE, "")
+    sub.connect("tcp://localhost:5570")
+    
+    # Synchronize with publisher
+    push = ctx.socket(ZMQ::PUSH)
+    push.connect("tcp://localhost:5569")
+    
+    # Get updates
+    push.send_string('sb++')
+    topic = ''
+    rc = sub.recv_string(topic)
+    sub.close
+    push.close
+    #sleep 1
+    return topic    
+  end
 end

@@ -1,0 +1,38 @@
+<style type="text/css">
+<!--
+.cols {font-size: 10px}
+.theader {color: #FFFFFF}
+-->
+</style>
+
+<h4>Audits</h4>
+<span class="cols">last 10 actions</span>
+<p>
+<table width="950" border="1" cellspacing="1" cellpadding="1">
+  <tr>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Author</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Timestamp</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Title</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Text</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">@Host</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Operation</span></th>
+    <th bgcolor="#0099CC" scope="col"><span class="theader">Subject</span></th>    
+  </tr>
+   <% for item in @items %>
+   <tr>
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["author"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["timestamp"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;
+ 				
+ 				<%= (item["type"].to_s == "comment") ? "article:reference:" + item["title"].to_s : item["title"].to_s%>
+ 				</span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["text"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["client"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["operation"].to_s%></span></td> 
+ 			<td bgcolor="<%= (item["type"].to_s == 'comment') ? '#E5E5E5' : '#FFFFF2' %>"><span class="cols">&nbsp;<%=item["type"].to_s%></span></td> 
+
+   	</tr>
+   <% end %>
+</p>
+</table>
+<p></p>

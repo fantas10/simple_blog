@@ -4,6 +4,10 @@ SimpleBlog::Application.routes.draw do
     resources :comments, only: [:create, :destroy]  
   end
   
+  resources :audits do
+    
+  end
+  
   root to: 'articles#index'
 
   # The priority is based upon order of creation:
